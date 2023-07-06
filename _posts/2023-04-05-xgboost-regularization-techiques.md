@@ -33,8 +33,19 @@ because the penalty decreases as a coefficient approaches zero, making it less b
 loss = \sum_{i=0}^n l(y_i, X_i \beta) + \alpha \sum_{j=0}^m \beta^2_j,
 ```
 
+**Minimum loss reduction** (`gamma`): Controls the complexity of inividual trees in the ensemble. It provides a threshold for the reduction in the loss required
+to make an additional split on a leaf node od the tree. When considering adding a new split to a leaf node in the tree, XGBoost calculates the reduction in loss
+that would result from the split. If this reduction in loss is less than `gamma`, then the algorithm decides not to make the split. In other words, the split is 
+made only if it decreases the loss by at least a value of `gamma`. Therefore, larger values of `gamma` will result in fewer splits and thus simpler, more 
+conservative models. On the other hand, smaller values of `gamma` allow more complex models with more splits.
+
+**rate drop** ...
+
 ...
 more regularization?
+
+
+
 
 ### Methodology
 TODO: Expand
