@@ -5,8 +5,33 @@ regularization in the context of machine learning and explore how different regu
 experimental methodology, we will present the results of a series of experiments conducted to evaluate the impact of different regularization parameters on the performance of 
 an XGBoost model.
 
-This report is structured as follows: Section "Regularizations in XGBoost" provides a theoretical background of regularization and its role in XGBoost. In Section "Methodology", we outline
+This report is structured as follows: Section "Regularizations in XGBoost" provides 
+a theoretical background of regularization and its role in XGBoost. In Section "Methodology", we outline
 the datasets used and our approach to parameter tuning and model evaluation. The experimental results are presented and discussed in "Results and Experiments" section.
+
+### Introduction
+
+In the context of XGBoost, the loss function is differentiable and typically selected based on the problem at hand (e.g., logistic loss for classification, squared error for regression).
+Commonly, it can be represented as:
+
+```math
+\mathcal{L} = \sum l(y_i, \hat{y}_i) + \gamma T + \frac{1}{2}\lambda ||\omega||^2
+```
+here $l$ is some loss function, $\gamma$ controls complexity of the tree structure, $\lambda$ controls scale of the leaf scores.
+
+Once we define the objective function, the XGBoost algorithm aims to find the model that minimizes this objective. Given that XGBoost builds an ensemble of decision trees, 
+the model needs an effective way to construct these trees. That's where the split finding function comes into play.
+
+The split finding function is a greedy algorithm that decides the optimal split at each node in a decision tree. It calculates a gain for each potential split and chooses the one that 
+yields the highest gain. The gain is a measure of the reduction in the objective function achieved by the split. Imagine $I_L$ and $I_R$ are the instance sets of left and right nodes after the plit. Letting $I = I_L \cup I_R$, then the loss reduction after the split can be represented as:
+
+```math
+\mathcal{L}_{\text{split}} = \frac{1}{2} \big[ \frac{(\sum_{i \in I_L g_i})^2}{\sum_{i \in I_L} h_i + \lambda} + \frac{(\sum_{i \in I_R g_i})^2}{\sum_{i \in I_R} h_i + \lambda} - \frac{(\sum_{i \in I g_i})^2}{\sum_{i \in I} h_i + \lambda} \big],
+```
+here $g_i$ and $h_i$ are the first and second order gradient statistics on the loss function. The derivation of this function can be looked up in the [paper](https://arxiv.org/pdf/1603.02754.pdf).
+
+In the following section, we will delve into regularization in XGBoost, exploring various forms of regularization techniques and the role they play in controlling model complexity and 
+combating overfitting.
 
 ### Regularizations in XGBoost
 
@@ -37,7 +62,7 @@ loss = \sum_{i=0}^n (y_i - X_i \beta)^2 + \alpha \sum_{j=0}^m \beta^2_j,
 ```
 
 **Minimum loss reduction** (`gamma`): controls the complexity of inividual trees in the ensemble. It provides a threshold for the reduction in the loss required
-to make an additional split on a leaf node od the tree. When considering adding a new split to a leaf node in the tree, XGBoost calculates the reduction in loss
+to make an additional split on a leaf node of the tree. When considering adding a new split to a leaf node in the tree, XGBoost calculates the reduction in loss
 that would result from the split. If this reduction in loss is less than `gamma`, then the algorithm decides not to make the split. In other words, the split is 
 made only if it decreases the loss by at least a value of `gamma`. Therefore, larger values of `gamma` will result in fewer splits and thus simpler, more 
 conservative models. On the other hand, smaller values of `gamma` allow more complex models with more splits.
@@ -63,7 +88,8 @@ The subsample parameter takes values between 0 and 1:
 - A value of 0 would mean that no columns are used, which of course wouldn't be useful.
 
 ### Methodology
-The methodology for determining the optimal set of parameters revolves around leveraging the Hyperparameter Optimization (HPO) capabilities provided by AWS Sagemaker. 
+The methodology for determining the optimal set of parameters revolves around leveraging the Hyperparameter Optimization (HPO) capabilities provided by AWS Sagemaker. In order to 
+figure out the affect of regularization parameters below the results of leveraging each regularization separately are presented.
 
 ### Experiments and Results
 
