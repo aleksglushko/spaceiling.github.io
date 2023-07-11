@@ -26,7 +26,7 @@ The split finding function is a greedy algorithm that decides the optimal split 
 yields the highest gain. The gain is a measure of the reduction in the objective function achieved by the split. Imagine $I_L$ and $I_R$ are the instance sets of left and right nodes after the plit. Letting $I = I_L \cup I_R$, then the loss reduction after the split can be represented as:
 
 ```math
-\mathcal{L}_{\text{split}} = \frac{1}{2} \big[ \frac{(\sum_{i \in I_L g_i})^2}{\sum_{i \in I_L} h_i + \lambda} + \frac{(\sum_{i \in I_R g_i})^2}{\sum_{i \in I_R} h_i + \lambda} - \frac{(\sum_{i \in I g_i})^2}{\sum_{i \in I} h_i + \lambda} \big],
+\mathcal{L}_{\text{split}} = \frac{1}{2} \big[ \frac{(\sum_{i \in I_L }g_i)^2}{\sum_{i \in I_L} h_i + \lambda} + \frac{(\sum_{i \in I_R}g_i)^2}{\sum_{i \in I_R} h_i + \lambda} - \frac{(\sum_{i \in I}g_i)^2}{\sum_{i \in I} h_i + \lambda} \big],
 ```
 here $g_i$ and $h_i$ are the first and second order gradient statistics on the loss function. The derivation of this function can be looked up in the [paper](https://arxiv.org/pdf/1603.02754.pdf).
 
