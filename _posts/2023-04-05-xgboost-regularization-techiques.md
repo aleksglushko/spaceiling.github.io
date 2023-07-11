@@ -67,12 +67,12 @@ It is important to note that it doesn't directly encourage trees with fewer leav
 The cost function to be minimized becomes:
 
 ```math
-loss = \sum_{i=0}^n l(y_i, X_i \beta) + \alpha \sum_{j=0}^m |\beta_j|,
+loss = \sum_{i=0}^n l(y_i, X_i \beta) + \alpha \sum_{j=0}^m |\omega_j|,
 ```
 where $l$ is a loss function, $y_i$ is a ground truth, $X$ is a features input, $\beta$ - coefficients. Considering the square error loss, the equation becomes as follows:
 
 ```math
-loss = \sum_{i=0}^n (y_i - X_i \beta)^2 + \alpha \sum_{j=0}^m |\beta_j|,
+loss = \sum_{i=0}^n (y_i - X_i \beta)^2 + \alpha \sum_{j=0}^m |\omega_j|,
 ```
 
 **L2 Regularization** (`lambda`): also known as Ridge Regression, L2 regularization adds a penalty equal to the square of the magnitude of the coefficients. This type of regularization tends 
@@ -82,7 +82,7 @@ tends to assign similar coefficients to correlated features. Furthemore, the L2 
 because the penalty decreases as a coefficient approaches zero, making it less beneficial to set a coefficient to zero than it is with L1 regularization.
 
 ```math
-loss = \sum_{i=0}^n (y_i - X_i \beta)^2 + \alpha \sum_{j=0}^m \beta^2_j,
+loss = \sum_{i=0}^n (y_i - X_i \beta)^2 + \lambda \sum_{j=0}^m \omega^2_j,
 ```
 
 **Minimum loss reduction** (`gamma`): controls the complexity of inividual trees in the ensemble. It provides a threshold for the reduction in the loss required
