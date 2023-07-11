@@ -5,9 +5,9 @@ regularization in the context of machine learning and explore how different regu
 experimental methodology, we will present the results of a series of experiments conducted to evaluate the impact of different regularization parameters on the performance of 
 an XGBoost model.
 
-This report is structured as follows: Section "Regularizations in XGBoost" provides 
-a theoretical background of regularization and its role in XGBoost. In Section "Methodology", we outline
-the datasets used and our approach to parameter tuning and model evaluation. The experimental results are presented and discussed in "Results and Experiments" section.
+This report is structured as follows: In sections "Introduction" and "Regularizations in XGBoost" 
+a theoretical background of regularization and its role in XGBoost are provided. In the section "Methodology, Results and Experiements" the experimental 
+results are presented and discussed in "Results and Experiments" section.
 
 ### Introduction
 
