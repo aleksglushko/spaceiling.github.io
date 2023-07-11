@@ -153,3 +153,10 @@ Sagemaker. In order to figure out the effect of regularization parameters, the r
 |                                       | min_child_weight  | 49        | 324       | 0.008  | 123           | 1.383      |
 |                                       | subsample         | 9         | 424       | 0.007  | 0.5           | 1.383      |
 
+![weekly_daily plots](https://github.com/spaceiling/spaceiling.github.io/assets/33725021/75823c02-3693-488d-a149-d3aa5f28eab1)
+
+![intraday](https://github.com/spaceiling/spaceiling.github.io/assets/33725021/7119ed57-9597-416e-ac14-3349c0d7c729)
+
+
+
+
